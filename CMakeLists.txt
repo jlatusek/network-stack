@@ -10,6 +10,10 @@ project(
     LANGUAGES CXX
 )
 
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+add_compile_options(-fdiagnostics-color=always) # force ninja to show colors
+
 include(cmake/project-is-top-level.cmake)
 include(cmake/variables.cmake)
 
@@ -26,16 +30,11 @@ target_include_directories(
     "\$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/source>"
 )
 
-target_compile_features(network-stack_lib PUBLIC cxx_std_20)
-
 # ---- Declare executable ----
 
 add_executable(network-stack_exe source/main.cpp)
-add_executable(network-stack::exe ALIAS network-stack_exe)
 
 set_property(TARGET network-stack_exe PROPERTY OUTPUT_NAME network-stack)
-
-target_compile_features(network-stack_exe PRIVATE cxx_std_20)
 
 target_link_libraries(network-stack_exe PRIVATE network-stack_lib)
 

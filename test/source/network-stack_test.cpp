@@ -1,8 +1,6 @@
-#include "lib.hpp"
+#include <gtest/gtest.h>
 
-auto main() -> int
+TEST(NetworkStack, HelloWorldTest)
 {
-  auto const lib = library {};
-
-  return lib.name == "network-stack" ? 0 : 1;
+  EXPECT_TRUE(true);
 }

@@ -6,9 +6,15 @@ project(network-stackTests LANGUAGES CXX)
 
 # ---- Tests ----
 
+find_package(GTest)
+include(GoogleTest)
+
 add_executable(network-stack_test source/network-stack_test.cpp)
-target_link_libraries(network-stack_test PRIVATE network-stack_lib)
-target_compile_features(network-stack_test PRIVATE cxx_std_20)
+target_link_libraries(network-stack_test PRIVATE 
+    network-stack_lib
+    GTest::gtest_main
+)
+gtest_discover_tests(network-stack_test)
 
 add_test(NAME network-stack_test COMMAND network-stack_test)
 
