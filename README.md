@@ -6,6 +6,12 @@ This is the network-stack project.
 
 See the [BUILDING](BUILDING.md) document.
 
+# Enable git hooks
+
+``` sh
+git config --local core.hooksPath .githooks/
+```
+
 # Contributing
 
 See the [CONTRIBUTING](CONTRIBUTING.md) document.

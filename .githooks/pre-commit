@@ -1,0 +1,14 @@
+#!/bin/bash
+ 
+# Redirect output to stderr.
+exec 1>&2
+ 
+FORMATTING_ERRORS=$(git diff -U0 --cached HEAD  | clang-format-diff -p1)
+if [ -n "$FORMATTING_ERRORS" ]; then
+    echo -e "\e[1;31mError: formatting errors detected\e[1;0m"
+    echo "$FORMATTING_ERRORS"
+ 
+    echo -e "\nIf You know what You're doing, you may try:"
+    echo "git commit --no-verify"
+    exit 1;
+fi
